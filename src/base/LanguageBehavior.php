@@ -8,7 +8,7 @@
  * @time       5:39 CH
  * @since      2.0.0
  */
-namespace navatech\language\components;
+namespace navatech\language\base;
 
 use navatech\language\helpers\MultiLanguageHelper;
 use navatech\language\Module;
@@ -28,7 +28,7 @@ use yii\web\NotFoundHttpException;
  * @property ActiveQuery $translation
  * @property ActiveQuery $translations
  */
-class MultiLanguageBehavior extends Behavior {
+class LanguageBehavior extends Behavior {
 
 	/**
 	 * @var ActiveRecord|$this|self

@@ -18,6 +18,7 @@ use yii\db\ActiveRecord;
  * This is the model class for table "phrase".
  *
  * @property integer    $id
+ * @property integer    $parent_id
  * @property string     $name
  * @property Language[] $languages
  */
@@ -120,12 +121,18 @@ class Phrase extends ActiveRecord {
 		}
 		return [
 			[
-				['name'],
+				[
+					'name',
+				],
 				'required',
 			],
 			[
 				['name'],
 				'unique',
+			],
+			[
+				['parent_id'],
+				'integer',
 			],
 			[
 				array_merge([

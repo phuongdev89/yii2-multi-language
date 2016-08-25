@@ -8,8 +8,10 @@
  * @time    2:43 CH
  * @since   1.0.1
  */
-namespace navatech\language\models;
+namespace navatech\language\models\search;
 
+use navatech\language\models\Language;
+use navatech\language\models\Phrase;
 use yii\data\ActiveDataProvider;
 
 /**

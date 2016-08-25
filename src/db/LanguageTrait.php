@@ -8,7 +8,7 @@
  * @time    12:47 SA
  * @since   2.0.0
  */
-namespace navatech\language\components;
+namespace navatech\language\db;
 
 use Yii;
 use yii\db\ActiveQuery;
@@ -22,7 +22,7 @@ use yii\db\ActiveQuery;
  * @method ActiveQuery with() with($_)
  * @since 2.0.0
  */
-trait MultiLanguageTrait {
+trait LanguageTrait {
 
 	/**
 	 * @var string the name of the lang field of the translation table. Default to 'language'.

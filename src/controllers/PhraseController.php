@@ -10,10 +10,10 @@
  */
 namespace navatech\language\controllers;
 
-use navatech\language\components\MultiLanguageController;
+use navatech\language\web\LanguageController;
 use navatech\language\models\Language;
 use navatech\language\models\Phrase;
-use navatech\language\models\PhraseSearch;
+use navatech\language\models\search\PhraseSearch;
 use navatech\language\models\PhraseTranslate;
 use navatech\language\Module;
 use navatech\language\Translate;
@@ -27,7 +27,7 @@ use yii\web\NotFoundHttpException;
 /**
  * Controller is the base class of web controllers.
  */
-class PhraseController extends MultiLanguageController {
+class PhraseController extends LanguageController {
 
 	/**
 	 * Returns a list of behaviors that this component should behave as.

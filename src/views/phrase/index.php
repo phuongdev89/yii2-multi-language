@@ -8,7 +8,7 @@
  * @time    2:35 CH
  */
 use kartik\grid\GridView;
-use navatech\language\models\PhraseSearch;
+use navatech\language\models\search\PhraseSearch;
 use navatech\language\Translate;
 use yii\data\ActiveDataProvider;
 use yii\web\View;

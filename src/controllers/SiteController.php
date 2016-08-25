@@ -10,11 +10,11 @@
  */
 namespace navatech\language\controllers;
 
-use navatech\language\components\MultiLanguageController;
 use navatech\language\models\Language;
-use navatech\language\models\LanguageSearch;
+use navatech\language\models\search\LanguageSearch;
 use navatech\language\Module;
 use navatech\language\Translate;
+use navatech\language\web\LanguageController;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\filters\VerbFilter;
@@ -23,7 +23,7 @@ use yii\web\NotFoundHttpException;
 /**
  * Controller is the base class of web controllers.
  */
-class IndexController extends MultiLanguageController {
+class SiteController extends LanguageController {
 
 	/**
 	 * Returns a list of behaviors that this component should behave as.
@@ -77,17 +77,10 @@ class IndexController extends MultiLanguageController {
 
 	/**
 	 * @return string
-	 */
-	public function actionIndex() {
-		return $this->actionList();
-	}
-
-	/**
-	 * @return string
 	 * @since 1.0.0
 	 * @throws InvalidParamException if the model cannot be found
 	 */
-	public function actionList() {
+	public function actionIndex() {
 		$searchModel  = new LanguageSearch();
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 		return $this->render('/language/list', [

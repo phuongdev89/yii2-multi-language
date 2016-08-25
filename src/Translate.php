@@ -10,13 +10,13 @@
  */
 namespace navatech\language;
 
-use navatech\language\helpers\MultiLanguageHelper;
+use navatech\language\helpers\LanguageHelper;
 use Yii;
 use yii\base\InvalidParamException;
 
 class Translate {
 
-	private $values;
+	private $categories;
 
 	/**
 	 * Language constructor.
@@ -28,9 +28,9 @@ class Translate {
 	 */
 	public function __construct($language_code = null) {
 		if ($language_code === null) {
-			$this->values = MultiLanguageHelper::getData(Yii::$app->language);
+			$this->categories = LanguageHelper::getData(Yii::$app->language);
 		} else {
-			$this->values = MultiLanguageHelper::getData($language_code);
+			$this->categories = LanguageHelper::getData($language_code);
 		}
 	}
 
@@ -55,17 +55,20 @@ class Translate {
 		if (array_key_exists(1, $arguments) && is_string($arguments[1]) && strlen($arguments[1]) === 2) {
 			$language_code = $arguments[1];
 		}
-		$language = new Translate($language_code);
-		if ($language->values !== null && array_key_exists($name, $language->values) && $value = $language->values[$name]) {
-			if ($parameters !== null) {
-				foreach ($parameters as $key => $param) {
-					$value = str_replace('{' . ($key + 1) . '}', $param, $value);
+		$language = new self($language_code);
+		if ($language->categories !== null) {
+			foreach ($language->categories as $category) {
+				if (array_key_exists($name, $category) && $value = $category[$name]) {
+					if ($parameters !== null) {
+						foreach ($parameters as $key => $param) {
+							$value = str_replace('{' . ($key + 1) . '}', $param, $value);
+						}
+					}
+					return trim($value);
 				}
 			}
-			return trim($value);
-		} else {
-			return MultiLanguageHelper::newPhrase($name);
 		}
+		return LanguageHelper::newPhrase($name);
 	}
 
 	/**
@@ -75,10 +78,14 @@ class Translate {
 	 * @since 2.0.0
 	 */
 	public function __get($name) {
-		if (array_key_exists($name, $this->values)) {
-			return $this->values[$name];
-		} else {
-			return MultiLanguageHelper::newPhrase($name);
+		foreach ($this->categories as $category) {
+			if (array_key_exists($name, $category)) {
+				return $category[$name];
+			}
 		}
+		return LanguageHelper::newPhrase($name);
+	}
+
+	public static function t($category, $name, $parameters = null) {
 	}
 }

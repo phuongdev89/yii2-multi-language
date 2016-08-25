@@ -8,7 +8,7 @@
  * @time    4:49 CH
  * @since   1.0.2
  */
-namespace navatech\language\components;
+namespace navatech\language\assets;
 
 use yii\web\AssetBundle;
 
@@ -25,7 +25,7 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since  2.0
  */
-class MultiLanguageAsset extends AssetBundle {
+class LanguageAsset extends AssetBundle {
 
 	/**
 	 * Initializes the bundle.
@@ -39,9 +39,9 @@ class MultiLanguageAsset extends AssetBundle {
 			'yii\bootstrap\BootstrapPluginAsset',
 		];
 		$this->css        = [
-			'style.css',
-			'phoca-flags.css',
+			'css/style.css',
+			'css/phoca-flags.css',
 		];
-		$this->sourcePath = '@vendor/navatech/yii2-multi-language/src/assets';
+		$this->sourcePath = '@vendor/navatech/yii2-multi-language/src/resource';
 	}
 }

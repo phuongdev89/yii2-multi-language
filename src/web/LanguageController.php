@@ -7,7 +7,7 @@
  * @date    6/27/2016
  * @time    5:07 PM
  */
-namespace navatech\language\components;
+namespace navatech\language\web;
 
 use navatech\language\models\Language;
 use navatech\language\Module;
@@ -16,7 +16,7 @@ use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\Cookie;
 
-class MultiLanguageController extends Controller {
+class LanguageController extends Controller {
 
 	/**
 	 * {@inheritDoc}

@@ -20,7 +20,7 @@ use yii\base\InvalidParamException;
 use yii\db\ActiveRecord;
 use yii\helpers\Json;
 
-class MultiLanguageHelper {
+class LanguageHelper {
 
 	/**
 	 * @param $name
@@ -42,14 +42,15 @@ class MultiLanguageHelper {
 	}
 
 	/**
-	 * @param $language_code
-	 * @param $path
+	 * @param $language_code string
+	 * @param $path          string
 	 *
 	 * @return array
 	 * @throws ErrorException
 	 * @since 1.0.0
 	 */
 	private static function _setAllData($language_code, $path) {
+		/**@var $models Phrase[] */
 		$file = $path . DIRECTORY_SEPARATOR . 'phrase_' . $language_code . '.json';
 		if (!file_exists($file)) {
 			$data = null;
@@ -57,22 +58,26 @@ class MultiLanguageHelper {
 			$data = file_get_contents($file);
 		}
 		if ($data == null || $data == '') {
-			/**@var $models Phrase[] */
-			$models = Phrase::find()->all();
+			$models = Phrase::find()->where([
+				'>',
+				'parent_id',
+				0,
+			])->all();
 			$code   = $language_code;
 			foreach ($models as $model) {
 				$model->setDynamicField();
-				$data[$model->name] = $model->$code;
+				$category                            = Phrase::findOne($model->parent_id);
+				$data[$category->name][$model->name] = $model->$code;
 			}
 		} else {
-			$data = [];
-			/**@var $models Phrase[] */
+			$data   = [];
 			$models = Phrase::find()->all();
 			$code   = $language_code;
 			foreach ($models as $model) {
 				$model->setDynamicField();
 				if (!array_key_exists($model->name, $data)) {
-					$data[$model->name] = $model->$code;
+					$category                            = Phrase::findOne($model->parent_id);
+					$data[$category->name][$model->name] = $model->$code;
 				}
 			}
 		}

@@ -8,8 +8,9 @@
  * @time    1:30 CH
  * @since   1.0.1
  */
-namespace navatech\language\models;
+namespace navatech\language\models\search;
 
+use navatech\language\models\Language;
 use yii\base\InvalidParamException;
 use yii\data\ActiveDataProvider;
 
