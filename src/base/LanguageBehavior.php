@@ -10,7 +10,7 @@
  */
 namespace navatech\language\base;
 
-use navatech\language\helpers\MultiLanguageHelper;
+use navatech\language\helpers\LanguageHelper;
 use navatech\language\Module;
 use Yii;
 use yii\base\Behavior;
@@ -105,7 +105,7 @@ class LanguageBehavior extends Behavior {
 		parent::init();
 		$this->module          = Yii::$app->getModule('language');
 		$this->currentLanguage = Yii::$app->language;
-		foreach (MultiLanguageHelper::getLanguages() as $language) {
+		foreach (LanguageHelper::getLanguages() as $language) {
 			$this->availableLanguages[$language['code']] = $language['name'];
 		}
 	}
@@ -148,7 +148,7 @@ class LanguageBehavior extends Behavior {
 		parent::attach($owner);
 		$this->module          = Yii::$app->getModule('language');
 		$this->currentLanguage = Yii::$app->language;
-		foreach (MultiLanguageHelper::getLanguages() as $language) {
+		foreach (LanguageHelper::getLanguages() as $language) {
 			$this->availableLanguages[$language['code']] = $language['name'];
 		}
 		if (empty($this->availableLanguages) || !is_array($this->availableLanguages)) {

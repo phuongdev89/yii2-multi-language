@@ -28,4 +28,3 @@ $this->params['breadcrumbs'][] = Translate::create();
 		</div>
 	</div>
 </div>
-

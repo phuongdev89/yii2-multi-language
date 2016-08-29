@@ -23,19 +23,41 @@ use yii\helpers\Json;
 class LanguageHelper {
 
 	/**
+	 * @param $category
 	 * @param $name
 	 *
 	 * @return string
 	 * @since 1.0.2
 	 */
-	public static function newPhrase($name) {
-		$model       = new Phrase();
+	public static function newPhrase($category = null, $name) {
+		/**@var Phrase $phraseCategory */
+		$model = new Phrase();
+		if ($category === null) {
+			$model->parent_id = 0;
+		} else {
+			$phraseQuery = Phrase::find()->where(['name' => $category]);
+			if ($phraseQuery->exists() && $phraseCategory = $phraseQuery->one()) {
+				$model->parent_id = $phraseCategory->id;
+			} else {
+				$phraseCategory            = new Phrase();
+				$phraseCategory->parent_id = 0;
+				$phraseCategory->name      = $category;
+				if ($phraseCategory->save()) {
+					$model->parent_id             = $phraseCategory->getPrimaryKey();
+					$PhraseTranslate              = new PhraseTranslate();
+					$PhraseTranslate->phrase_id   = $phraseCategory->getPrimaryKey();
+					$PhraseTranslate->language_id = Language::getIdByCode(Yii::$app->language);
+					$PhraseTranslate->value       = '';
+					$PhraseTranslate->save();
+				}
+			}
+		}
 		$model->name = $name;
 		if ($model->save()) {
 			$PhraseTranslate              = new PhraseTranslate();
 			$PhraseTranslate->phrase_id   = $model->getPrimaryKey();
 			$PhraseTranslate->language_id = Language::getIdByCode(Yii::$app->language);
-			$PhraseTranslate->value       = 'error: phrase [' . $name . '] not found';
+			$PhraseTranslate->value       = '';
 			$PhraseTranslate->save();
 		}
 		return 'error: phrase [' . $name . '] not found';
@@ -51,6 +73,7 @@ class LanguageHelper {
 	 */
 	private static function _setAllData($language_code, $path) {
 		/**@var $models Phrase[] */
+		/**@var $categories Phrase[] */
 		$file = $path . DIRECTORY_SEPARATOR . 'phrase_' . $language_code . '.json';
 		if (!file_exists($file)) {
 			$data = null;
@@ -58,26 +81,48 @@ class LanguageHelper {
 			$data = file_get_contents($file);
 		}
 		if ($data == null || $data == '') {
-			$models = Phrase::find()->where([
-				'>',
-				'parent_id',
-				0,
+			$code       = $language_code;
+			$categories = Phrase::find()->where([
+				'parent_id' => 0,
 			])->all();
-			$code   = $language_code;
-			foreach ($models as $model) {
-				$model->setDynamicField();
-				$category                            = Phrase::findOne($model->parent_id);
-				$data[$category->name][$model->name] = $model->$code;
+			foreach ($categories as $category) {
+				$category->setDynamicField();
+				$data[$category->id] = [
+					'key'   => $category->name,
+					'value' => $category->$code,
+				];
+				$models              = Phrase::find()->where(['parent_id' => $category->id])->all();
+				foreach ($models as $model) {
+					$model->setDynamicField();
+					$data[$category->id]['data'][$model->id] = [
+						'key'   => $model->name,
+						'value' => $model->$code,
+					];
+				}
 			}
 		} else {
-			$data   = [];
-			$models = Phrase::find()->all();
-			$code   = $language_code;
-			foreach ($models as $model) {
-				$model->setDynamicField();
-				if (!array_key_exists($model->name, $data)) {
-					$category                            = Phrase::findOne($model->parent_id);
-					$data[$category->name][$model->name] = $model->$code;
+			$data       = Json::decode($data);
+			$code       = $language_code;
+			$categories = Phrase::find()->where([
+				'parent_id' => 0,
+			])->all();
+			foreach ($categories as $category) {
+				if (!isset($data[$category->id])) {
+					$category->setDynamicField();
+					$data[$category->id] = [
+						'key'   => $category->name,
+						'value' => $category->$code,
+					];
+				}
+				$models = Phrase::find()->where(['parent_id' => $category->id])->all();
+				foreach ($models as $model) {
+					if (!isset($data[$category->id]['data'][$model->id])) {
+						$model->setDynamicField();
+						$data[$category->id]['data'][$model->id] = [
+							'key'   => $model->name,
+							'value' => $model->$code,
+						];
+					}
 				}
 			}
 		}
@@ -96,13 +141,23 @@ class LanguageHelper {
 		$php = '<?php' . PHP_EOL;
 		$php .= 'namespace navatech\language;' . PHP_EOL;
 		$php .= 'class Translate {' . PHP_EOL;
-		foreach ($data as $key => $item) {
+		foreach ($data as $category) {
 			$php .= '       /**' . PHP_EOL;
 			$php .= '       * @param null|array|mixed $parameters' . PHP_EOL;
 			$php .= '       * @param null|string $language_code' . PHP_EOL;
 			$php .= '       * @return string' . PHP_EOL;
 			$php .= '       */' . PHP_EOL;
-			$php .= '       public static function ' . $key . '($parameters = null, $language_code = null){}' . PHP_EOL;
+			$php .= '       public static function ' . $category['key'] . '($parameters = null, $language_code = null){}' . PHP_EOL;
+			if (isset($category['data']) && $category['data'] != null) {
+				foreach ($category['data'] as $item) {
+					$php .= '       /**' . PHP_EOL;
+					$php .= '       * @param null|array|mixed $parameters' . PHP_EOL;
+					$php .= '       * @param null|string $language_code' . PHP_EOL;
+					$php .= '       * @return string' . PHP_EOL;
+					$php .= '       */' . PHP_EOL;
+					$php .= '       public static function ' . $item['key'] . '($parameters = null, $language_code = null){}' . PHP_EOL;
+				}
+			}
 		}
 		$php .= '//defined_new_method_here' . PHP_EOL;
 		$php .= '}';

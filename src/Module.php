@@ -10,7 +10,7 @@
  */
 namespace navatech\language;
 
-use navatech\language\helpers\MultiLanguageHelper;
+use navatech\language\helpers\LanguageHelper;
 use Yii;
 
 class Module extends \navatech\base\Module {
@@ -21,13 +21,17 @@ class Module extends \navatech\base\Module {
 	 * @var string
 	 * @since 2.0.1
 	 */
-	public $suffix = 'translate';
+	public $suffix              = 'translate';
+
+	public $controllerNamespace = 'navatech\language\controllers';
+
+	public $defaultRoute        = 'site/index';
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public function init() {
 		parent::init();
-		MultiLanguageHelper::getData(Yii::$app->language);
+		LanguageHelper::getData(Yii::$app->language);
 	}
 }

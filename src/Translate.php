@@ -16,7 +16,11 @@ use yii\base\InvalidParamException;
 
 class Translate {
 
-	private $categories;
+	/**@var array */
+	protected $data;
+
+	/**@var string */
+	protected $value = '';
 
 	/**
 	 * Language constructor.
@@ -28,9 +32,9 @@ class Translate {
 	 */
 	public function __construct($language_code = null) {
 		if ($language_code === null) {
-			$this->categories = LanguageHelper::getData(Yii::$app->language);
+			$this->data = LanguageHelper::getData(Yii::$app->language);
 		} else {
-			$this->categories = LanguageHelper::getData($language_code);
+			$this->data = LanguageHelper::getData($language_code);
 		}
 	}
 
@@ -39,7 +43,7 @@ class Translate {
 	 * @param $arguments
 	 *
 	 * @return string
-	 * @since 1.0.2
+	 * @since 3.0.0
 	 * @throws InvalidParamException
 	 */
 	public static function __callStatic($name, $arguments) {
@@ -55,37 +59,93 @@ class Translate {
 		if (array_key_exists(1, $arguments) && is_string($arguments[1]) && strlen($arguments[1]) === 2) {
 			$language_code = $arguments[1];
 		}
-		$language = new self($language_code);
-		if ($language->categories !== null) {
-			foreach ($language->categories as $category) {
-				if (array_key_exists($name, $category) && $value = $category[$name]) {
-					if ($parameters !== null) {
-						foreach ($parameters as $key => $param) {
-							$value = str_replace('{' . ($key + 1) . '}', $param, $value);
+		$translate = new self($language_code);
+		if ($translate->data !== null) {
+			foreach ($translate->data as $category) {
+				if ($category['key'] == $name && $translate->value = $category['value']) {
+					return $translate->value($parameters);
+				} else {
+					if (isset($category['data']) && $category['data'] != null) {
+						foreach ($category['data'] as $item) {
+							if ($item['key'] == $name && $translate->value = $item['value']) {
+								return $translate->value($parameters);
+							}
 						}
 					}
-					return trim($value);
 				}
 			}
 		}
-		return LanguageHelper::newPhrase($name);
+		return LanguageHelper::newPhrase(null, $name);
+	}
+
+	/**
+	 * @param null $parameters
+	 *
+	 * @return string
+	 * @since 3.0.0
+	 */
+	public function value($parameters = null) {
+		if ($parameters !== null) {
+			foreach ($parameters as $key => $param) {
+				$this->value = str_replace('{' . ($key + 1) . '}', $param, $this->value);
+			}
+		}
+		return trim($this->value);
 	}
 
 	/**
 	 * @param $name
 	 *
 	 * @return string
-	 * @since 2.0.0
+	 * @since 3.0.0
 	 */
 	public function __get($name) {
-		foreach ($this->categories as $category) {
-			if (array_key_exists($name, $category)) {
-				return $category[$name];
+		foreach ($this->data as $category) {
+			if ($category['key'] == $name) {
+				return trim($category['value']);
+			} else {
+				if (isset($category['data']) && $category['data'] != null) {
+					foreach ($category['data'] as $item) {
+						if ($item['key'] == $name) {
+							return $item['value'];
+						}
+					}
+				}
 			}
 		}
-		return LanguageHelper::newPhrase($name);
+		return LanguageHelper::newPhrase(null, $name);
 	}
 
+	/**
+	 * @param      $category
+	 * @param      $name
+	 * @param null $parameters
+	 *
+	 * @return string
+	 * @since 3.0.0
+	 */
 	public static function t($category, $name, $parameters = null) {
+		$language_code = Yii::$app->language;
+		$translate     = new self($language_code);
+		foreach ($translate->data as $data) {
+			if ($data['key'] == $category) {
+				if ($data['key'] == $name) {
+					$translate->value = $data['value'];
+				} else {
+					if (isset($category['data']) && $data['data'] != null) {
+						foreach ($data['data'] as $item) {
+							if ($item['key'] == $name) {
+								$translate->value = $item['value'];
+							}
+						}
+					}
+				}
+			}
+		}
+		if ($translate->value !== '') {
+			return $translate->value($parameters);
+		} else {
+			return LanguageHelper::newPhrase($category, $name);
+		}
 	}
 }
