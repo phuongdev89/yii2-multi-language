@@ -19,9 +19,9 @@
 		}
 	],
 	"require" : {
-		"navatech/yii2-navatech-base" : "1.0.0.2",
-		"kartik-v/yii2-grid" : "3.1.*",
-		"kartik-v/yii2-editable" : "1.7.*"
+		"navatech/yii2-navatech-base" : "1.*",
+		"kartik-v/yii2-grid" : "3.*",
+		"kartik-v/yii2-editable" : "1.*"
 	},
 	"suggest" : {
 		"navatech/yii2-localeurls" : "@dev"
