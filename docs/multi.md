@@ -50,7 +50,7 @@ Attaching this behavior to the model (Post in the example). Commented fields hav
  * @method boolean hasTranslateAttribute(string $attribute_translation)
  * @method array getTranslateAttributes(string $attribute)
  */
-class Model extends \navatech\language\db\ActiveRecord {
+class Model extends \phuongdev89\language\db\ActiveRecord {
 
     /**
      * {@inheritDoc}
@@ -58,7 +58,7 @@ class Model extends \navatech\language\db\ActiveRecord {
     public function behaviors() {
         $behaviors = parent::behaviors();
         $behaviors['ml'] = [
-            'class'      => \navatech\language\components\LanguageBehavior::className(),
+            'class'      => \phuongdev89\language\components\LanguageBehavior::className(),
             'attributes' => [
                 'title',
                 'content',
@@ -75,7 +75,7 @@ class Model extends \navatech\language\db\ActiveRecord {
             .........
                 [
                     //if want all translated attributes required
-                    ArrayHelper::merge(\navatech\language\helpers\LanguageHelper::attributeNames($this), [
+                    ArrayHelper::merge(\phuongdev89\language\helpers\LanguageHelper::attributeNames($this), [
                         'email',
                         .......
                     ]),
@@ -105,7 +105,7 @@ class Model extends \navatech\language\db\ActiveRecord {
     			'Email'        => Translate::email(),
     			......
     		];
-    		foreach(\navatech\language\helpers\LanguageHelper::attributeNames($this) as $mlAttribute){
+    		foreach(\phuongdev89\language\helpers\LanguageHelper::attributeNames($this) as $mlAttribute){
     		    $attributeLabels[$mlAttribute] = Translate::$mlAttribute();
     		}
     		return $attributeLabels;

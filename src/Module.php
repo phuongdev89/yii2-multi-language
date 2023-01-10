@@ -1,30 +1,33 @@
 <?php
 /**
- * Created by Navatech.
+ * Created by phuongdev89.
  * @project Yii2 Multi Language
  * @author  Phuong
- * @email   phuong17889[at]gmail.com
+ * @email   phuongdev89@gmail.com
  * @date    04/02/2016
  * @time    1:46 SA
  * @since   1.0.2
  */
-namespace navatech\language;
-class Module extends \navatech\base\Module {
 
-	const VERSION = '2.0.1';
+namespace phuongdev89\language;
+class Module extends \phuongdev89\base\Module
+{
 
-	/**
-	 * @var string
-	 * @since 2.0.1
-	 */
-	public $suffix         = 'translate';
+    const VERSION = '2.0.1';
 
-	public $modelNamespace = null;
+    /**
+     * @var string
+     * @since 2.0.1
+     */
+    public $suffix = 'translate';
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public function init() {
-		parent::init();
-	}
+    public $modelNamespace = null;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function init()
+    {
+        parent::init();
+    }
 }

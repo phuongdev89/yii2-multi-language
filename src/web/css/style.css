@@ -1,20 +1,20 @@
 /**
- * Created by Navatech.
+ * Created by phuongdev89.
  * @project Yii2 Multi Language
  * @author  Phuong
- * @email   phuong17889[at]gmail.com
+ * @email   phuongdev89@gmail.com
  * @date    13/02/2016
  * @time    17:49 CH
  * @since 1.0.2
  */
-.navatech-multi-language .language-box {
+.phuongdev89-multi-language .language-box {
     width: 32%;
     float: left;
     position: relative;
     height: 140px;
 }
 
-.navatech-multi-language .flag-box {
+.phuongdev89-multi-language .flag-box {
     width: 120px;
     height: 120px;
     display: inline-block;
@@ -22,7 +22,7 @@
     position: relative
 }
 
-.navatech-multi-language .flag {
+.phuongdev89-multi-language .flag {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -37,173 +37,173 @@
     opacity: 0.4;
 }
 
-.navatech-multi-language .dropdown .flag {
+.phuongdev89-multi-language .dropdown .flag {
     position: relative;
     border: 0;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
 }
 
-.navatech-multi-language .dropdown a.active {
+.phuongdev89-multi-language .dropdown a.active {
     background: #EAEAEA;
 }
 
-.navatech-multi-language a.active .flag, .navatech-multi-language a:hover .flag, .navatech-multi-language .dropdown .btn .flag {
+.phuongdev89-multi-language a.active .flag, .phuongdev89-multi-language a:hover .flag, .phuongdev89-multi-language .dropdown .btn .flag {
     opacity: 1;
 }
 
-.navatech-multi-language .title {
+.phuongdev89-multi-language .title {
     display: inline-block;
     vertical-align: middle;
     margin-left: 40px;
 }
 
-.navatech-multi-language .flag-10 {
+.phuongdev89-multi-language .flag-10 {
     width: 10px !important;
     height: 10px !important;
 }
 
-.navatech-multi-language .flag-20 {
+.phuongdev89-multi-language .flag-20 {
     width: 20px !important;
     height: 20px !important;
 }
 
-.navatech-multi-language .flag-30 {
+.phuongdev89-multi-language .flag-30 {
     width: 30px !important;
     height: 30px !important;
 }
 
-.navatech-multi-language .flag-40 {
+.phuongdev89-multi-language .flag-40 {
     width: 40px !important;
     height: 40px !important;
 }
 
-.navatech-multi-language .flag-50 {
+.phuongdev89-multi-language .flag-50 {
     width: 50px !important;
     height: 50px !important;
 }
 
-.navatech-multi-language .flag-60 {
+.phuongdev89-multi-language .flag-60 {
     width: 60px !important;
     height: 60px !important;
 }
 
-.navatech-multi-language .flag-70 {
+.phuongdev89-multi-language .flag-70 {
     width: 70px !important;
     height: 70px !important;
 }
 
-.navatech-multi-language .flag-80 {
+.phuongdev89-multi-language .flag-80 {
     width: 80px !important;
     height: 80px !important;
 }
 
-.navatech-multi-language .flag-90 {
+.phuongdev89-multi-language .flag-90 {
     width: 90px !important;
     height: 90px !important;
 }
 
-.navatech-multi-language .flag-100 {
+.phuongdev89-multi-language .flag-100 {
     width: 100px !important;
     height: 100px !important;
 }
 
-.navatech-multi-language .flag-110 {
+.phuongdev89-multi-language .flag-110 {
     width: 110px !important;
     height: 110px !important;
 }
 
-.navatech-multi-language .flag-120 {
+.phuongdev89-multi-language .flag-120 {
     width: 120px !important;
     height: 120px !important;
 }
 
-.navatech-multi-language .flag-130 {
+.phuongdev89-multi-language .flag-130 {
     width: 130px !important;
     height: 130px !important;
 }
 
-.navatech-multi-language .flag-140 {
+.phuongdev89-multi-language .flag-140 {
     width: 140px !important;
     height: 140px !important;
 }
 
-.navatech-multi-language .flag-150 {
+.phuongdev89-multi-language .flag-150 {
     width: 150px !important;
     height: 150px !important;
 }
 
-.navatech-multi-language .flag-160 {
+.phuongdev89-multi-language .flag-160 {
     width: 160px !important;
     height: 160px !important;
 }
 
-.navatech-multi-language .flag-170 {
+.phuongdev89-multi-language .flag-170 {
     width: 170px !important;
     height: 170px !important;
 }
 
-.navatech-multi-language .flag-180 {
+.phuongdev89-multi-language .flag-180 {
     width: 180px !important;
     height: 180px !important;
 }
 
-.navatech-multi-language .flag-190 {
+.phuongdev89-multi-language .flag-190 {
     width: 190px !important;
     height: 190px !important;
 }
 
-.navatech-multi-language .flag-200 {
+.phuongdev89-multi-language .flag-200 {
     width: 200px !important;
     height: 200px !important;
 }
 
-.navatech-multi-language .flag-210 {
+.phuongdev89-multi-language .flag-210 {
     width: 210px !important;
     height: 210px !important;
 }
 
-.navatech-multi-language .flag-220 {
+.phuongdev89-multi-language .flag-220 {
     width: 220px !important;
     height: 220px !important;
 }
 
-.navatech-multi-language .flag-230 {
+.phuongdev89-multi-language .flag-230 {
     width: 230px !important;
     height: 230px !important;
 }
 
-.navatech-multi-language .flag-240 {
+.phuongdev89-multi-language .flag-240 {
     width: 240px !important;
     height: 240px !important;
 }
 
-.navatech-multi-language .flag-250 {
+.phuongdev89-multi-language .flag-250 {
     width: 250px !important;
     height: 250px !important;
 }
 
-.navatech-multi-language .flag-260 {
+.phuongdev89-multi-language .flag-260 {
     width: 260px !important;
     height: 260px !important;
 }
 
-.navatech-multi-language .flag-270 {
+.phuongdev89-multi-language .flag-270 {
     width: 270px !important;
     height: 270px !important;
 }
 
-.navatech-multi-language .flag-280 {
+.phuongdev89-multi-language .flag-280 {
     width: 280px !important;
     height: 280px !important;
 }
 
-.navatech-multi-language .flag-290 {
+.phuongdev89-multi-language .flag-290 {
     width: 290px !important;
     height: 290px !important;
 }
 
-.navatech-multi-language .flag-300 {
+.phuongdev89-multi-language .flag-300 {
     width: 300px !important;
     height: 300px !important;
 }

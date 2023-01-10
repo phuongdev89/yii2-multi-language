@@ -1,7 +1,7 @@
 # yii2-multi-language
 
-[![Packagist Version](https://img.shields.io/packagist/v/navatech/yii2-multi-language.svg?style=flat)](https://packagist.org/packages/navatech/yii2-multi-language)
-[![Total Downloads](https://img.shields.io/packagist/dt/navatech/yii2-multi-language.svg?style=flat)](https://packagist.org/packages/navatech/yii2-multi-language)
+[![Packagist Version](https://img.shields.io/packagist/v/phuongdev89/yii2-multi-language.svg?style=flat)](https://packagist.org/packages/phuongdev89/yii2-multi-language)
+[![Total Downloads](https://img.shields.io/packagist/dt/phuongdev89/yii2-multi-language.svg?style=flat)](https://packagist.org/packages/phuongdev89/yii2-multi-language)
 
 This module allow you to create multi language use database.
 By default, Yii use Yii::t() for multi language.
@@ -13,7 +13,7 @@ Now you can store it on mySql.
 * [Yii 2 Bootstrap](https://packagist.org/packages/yiisoft/yii2-bootstrap)
 * [Kartik-v Yii 2 Grid](https://packagist.org/packages/kartik-v/yii2-grid)
 * [Kartik-v Yii 2 editable](https://packagist.org/packages/kartik-v/yii2-editable)
-* [Navatech Yii 2 Locale Urls](https://packagist.org/packages/navatech/yii2-localeurls)
+* [phuongdev89 Yii 2 Locale Urls](https://packagist.org/packages/phuongdev89/yii2-localeurls)
 
 ## Install & config:
 
@@ -22,11 +22,11 @@ Now you can store it on mySql.
 Preferred way to install this extension through [composer](http://getcomposer.org)  
 Either run
 ~~~
-composer require navatech/yii2-multi-language "^2.0"
+composer require phuongdev89/yii2-multi-language "^2.0"
 ~~~
 Or add to `require` section of `composer.json` then run `composer update`
 ~~~
-"navatech/yii2-multi-language" : "^2.0" 
+"phuongdev89/yii2-multi-language" : "^2.0" 
 ~~~
 
 ### Config:
@@ -40,7 +40,7 @@ Or add to `require` section of `composer.json` then run `composer update`
     ],
     'components' => [
         'multiLanguage' => [
-           'class' => '\navatech\language\Component',
+           'class' => '\phuongdev89\language\Component',
         ],
     ],
     'modules'    => [
@@ -48,9 +48,9 @@ Or add to `require` section of `composer.json` then run `composer update`
             'class' => '\kartik\grid\Module',
         ],
         'language' => [
-        'class'    => '\navatech\language\Module',
+        'class'    => '\phuongdev89\language\Module',
         /*TODO uncommented if you want to custom view*/
-        //'viewPath' => '@app/vendor/navatech/yii2-multi-language/src/views',
+        //'viewPath' => '@app/vendor/phuongdev89/yii2-multi-language/src/views',
         /*TODO uncommented if you want to change suffix of translated table / model.
         should be one word, lowercase only.*/
         //'suffix' => 'translate',
@@ -59,15 +59,15 @@ Or add to `require` section of `composer.json` then run `composer update`
 ~~~
 Run Yii Migration, you will have two default language (English & Vietnamese):
 ```
-php yii migrate/up --migrationPath=@vendor/navatech/yii2-multi-language/src/migrations
+php yii migrate/up --migrationPath=@vendor/phuongdev89/yii2-multi-language/src/migrations
 ```
 
 
 ## Usage
-[LanguageWidget](https://github.com/navatech/yii2-multi-language/blob/master/docs/widget.md)
+[LanguageWidget](https://github.com/phuongdev89/yii2-multi-language/blob/master/docs/widget.md)
 
-[Multi language on model](https://github.com/navatech/yii2-multi-language/blob/master/docs/multi.md)
+[Multi language on model](https://github.com/phuongdev89/yii2-multi-language/blob/master/docs/multi.md)
 
-[Translate](https://github.com/navatech/yii2-multi-language/blob/master/docs/translate.md)
+[Translate](https://github.com/phuongdev89/yii2-multi-language/blob/master/docs/translate.md)
 
-[Custom Url Route](https://github.com/navatech/yii2-multi-language/blob/master/docs/route.md)
+[Custom Url Route](https://github.com/phuongdev89/yii2-multi-language/blob/master/docs/route.md)

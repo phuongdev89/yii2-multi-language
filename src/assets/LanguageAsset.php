@@ -1,14 +1,15 @@
 <?php
 /**
- * Created by Navatech.
+ * Created by phuongdev89.
  * @project Yii2 Multi Language
  * @author  Phuong
- * @email   phuong17889[at]gmail.com
+ * @email   phuongdev89@gmail.com
  * @date    13/02/2016
  * @time    4:49 CH
  * @since   1.0.2
  */
-namespace navatech\language\assets;
+
+namespace phuongdev89\language\assets;
 
 use yii\web\AssetBundle;
 
@@ -25,23 +26,25 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since  2.0
  */
-class LanguageAsset extends AssetBundle {
+class LanguageAsset extends AssetBundle
+{
 
-	/**
-	 * Initializes the bundle.
-	 * If you override this method, make sure you call the parent implementation in the last.
-	 */
-	public function init() {
-		parent::init();
-		$this->depends    = [
-			'yii\web\YiiAsset',
-			'yii\bootstrap\BootstrapAsset',
-			'yii\bootstrap\BootstrapPluginAsset',
-		];
-		$this->css        = [
-			'css/style.css',
-			'css/phoca-flags.css',
-		];
-		$this->sourcePath = '@vendor/navatech/yii2-multi-language/src/web';
-	}
+    /**
+     * Initializes the bundle.
+     * If you override this method, make sure you call the parent implementation in the last.
+     */
+    public function init()
+    {
+        parent::init();
+        $this->depends = [
+            'yii\web\YiiAsset',
+            'yii\bootstrap\BootstrapAsset',
+            'yii\bootstrap\BootstrapPluginAsset',
+        ];
+        $this->css = [
+            'css/style.css',
+            'css/phoca-flags.css',
+        ];
+        $this->sourcePath = '@vendor/phuongdev89/yii2-multi-language/src/web';
+    }
 }

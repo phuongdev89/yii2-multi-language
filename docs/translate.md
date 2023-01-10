@@ -3,9 +3,9 @@
 ### In code
 ```
 <?php
-echo \navatech\language\Translate::welcome_to_my_website();
+echo \phuongdev89\language\Translate::welcome_to_my_website();
 //or
-$translate = new \navatech\language\Translate();
+$translate = new \phuongdev89\language\Translate();
 echo $translate->welcome_to_my_website;
 ```
 Then run the page where contain above code
@@ -25,11 +25,11 @@ in Vietnamese: "Chào mừng bạn ghé thăm trang của tôi"
 ## Usage with parameters:
 ```
 <?php
-echo \navatech\language\Translate::welcome_back_x([
+echo \phuongdev89\language\Translate::welcome_back_x([
     Yii::$app->user->identity->username
 ]);
 //or
-$translate = new \navatech\language\Translate();
+$translate = new \phuongdev89\language\Translate();
 echo $translate->welcome_back_x([
     Yii::$app->user->identity->username
 ]);

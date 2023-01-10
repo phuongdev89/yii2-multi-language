@@ -1,14 +1,15 @@
 <?php
 /**
- * Created by Navatech.
+ * Created by phuongdev89.
  * @project yii2-multi-language
  * @author  Phuong
- * @email   phuong17889[at]gmail.com
+ * @email   phuongdev89@gmail.com
  * @date    03/03/2016
  * @time    12:46 SA
  * @since 2.0.0
  */
-namespace navatech\language\db;
+
+namespace phuongdev89\language\db;
 
 use yii\db\ActiveQuery;
 
@@ -22,7 +23,8 @@ use yii\db\ActiveQuery;
  *
  * @since  2.0
  */
-class LanguageQuery extends ActiveQuery {
+class LanguageQuery extends ActiveQuery
+{
 
-	use LanguageTrait;
+    use LanguageTrait;
 }
